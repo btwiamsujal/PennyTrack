@@ -1,0 +1,42 @@
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Description</th>
+    </tr>
+    {% for expense in expenses %}
+    <tr>
+        <td>{{ expense.category }}</td>
+        <td>{{ expense.amount }}</td>
+        <td>{{ expense.date.strftime('%Y-%m-%d') }}</td>
+        <td>{{ expense.description or 'N/A' }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="{{ url_for('add_expense') }}" method="POST">
+    <label>Category:</label>
+    <input type="text" name="category" required>
+    
+    <label>Amount:</label>
+    <input type="number" name="amount" step="0.01" required>
+
+    <label>Date:</label>
+    <input type="date" name="date" required>
+
+    <label>Description:</label>
+    <input type="text" name="description">
+
+    <button type="submit">Add Expense</button>
+</form>
+
+{% for expense in current_user.expenses %}
+<tr>
+    <td>{{ expense.category }}</td>
+    <td>${{ expense.amount }}</td>
+    <td>{{ expense.description }}</td>
+    <td>{{ expense.date.strftime('%Y-%m-%d') }}</td>
+</tr>
+{% endfor %}
+
