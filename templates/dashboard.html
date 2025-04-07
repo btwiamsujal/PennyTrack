@@ -1,42 +1,121 @@
-<table>
-    <tr>
-        <th>Category</th>
-        <th>Amount</th>
-        <th>Date</th>
-        <th>Description</th>
-    </tr>
-    {% for expense in expenses %}
-    <tr>
-        <td>{{ expense.category }}</td>
-        <td>{{ expense.amount }}</td>
-        <td>{{ expense.date.strftime('%Y-%m-%d') }}</td>
-        <td>{{ expense.description or 'N/A' }}</td>
-    </tr>
-    {% endfor %}
-</table>
+{% extends "base.html" %}
 
-<form action="{{ url_for('add_expense') }}" method="POST">
-    <label>Category:</label>
-    <input type="text" name="category" required>
-    
-    <label>Amount:</label>
-    <input type="number" name="amount" step="0.01" required>
+{% block title %}Dashboard - PennyTrack{% endblock %}
 
-    <label>Date:</label>
-    <input type="date" name="date" required>
+{% block content %}
 
-    <label>Description:</label>
-    <input type="text" name="description">
+<!-- Navbar for logged-in users -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">PennyTrack</a>
+    <div class="d-flex align-items-center">
+      <p class="text-light m-0">Welcome, {{ current_user.username }}</p>
+      <a href="{{ url_for('logout') }}" class="btn btn-outline-light ms-3">Logout</a>
+    </div>
+  </div>
+</nav>
 
-    <button type="submit">Add Expense</button>
-</form>
+<!-- Custom Styles -->
+<style>
+  body {
+    background: url('{{ url_for('static', filename='images/image.png') }}') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+  }
 
-{% for expense in current_user.expenses %}
-<tr>
-    <td>{{ expense.category }}</td>
-    <td>${{ expense.amount }}</td>
-    <td>{{ expense.description }}</td>
-    <td>{{ expense.date.strftime('%Y-%m-%d') }}</td>
-</tr>
-{% endfor %}
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+  }
 
+  .card {
+    background: #1f1c1c;
+    color: #fff;
+    border: none;
+  }
+
+  .table thead {
+    background-color: #3a2f2f;
+    color: #fff;
+  }
+
+  .table tbody tr {
+    color: #eee;
+  }
+
+  .btn-success {
+    background-color: #5c4033;
+    border: none;
+  }
+
+  .btn-success:hover {
+    background-color: #7b5e4c;
+  }
+
+  h2, h4 {
+    color: #f8f0e3;
+  }
+</style>
+
+<!-- Add Expense Form -->
+<div class="card shadow p-4 mb-5">
+  <h4 class="mb-3">Add New Expense</h4>
+  <form action="{{ url_for('add_expense') }}" method="POST">
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <label class="form-label">Category</label>
+        <input type="text" name="category" class="form-control" required>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Amount (₹)</label>
+        <input type="number" name="amount" step="0.01" class="form-control" required>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Date</label>
+        <input type="date" name="date" class="form-control" required>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Description</label>
+        <input type="text" name="description" class="form-control">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">+ Add Expense</button>
+  </form>
+</div>
+
+<!-- Expenses Table -->
+{% if expenses %}
+  <div class="card shadow p-4">
+    <h4 class="mb-3">Your Expenses</h4>
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Amount (₹)</th>
+            <th>Date</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for expense in expenses %}
+            <tr>
+              <td>{{ expense.category }}</td>
+              <td>{{ expense.amount }}</td>
+              <td>{{ expense.date.strftime('%Y-%m-%d') }}</td>
+              <td>{{ expense.description or 'N/A' }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% else %}
+  <p class="text-muted text-center">No expenses found. Start tracking by adding one above!</p>
+{% endif %}
+
+{% endblock %}
