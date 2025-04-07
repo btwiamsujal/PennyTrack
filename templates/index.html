@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PennyTrack – Track Expenses, Stay Ahead</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: url("{{ url_for('static', filename='images/dollar-bg.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+      color: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      animation: fadeInBody 1s ease-in;
+      backdrop-filter: brightness(0.2);
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .navbar {
+      background-color: rgba(26, 26, 26, 0.92);
+      border-bottom: 1px solid #3a3a3a;
+      animation: fadeDown 1s ease-in;
+    }
+
+    .navbar-brand {
+      color: #d2b48c !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+      color: #fff !important;
+      transform: scale(1.05);
+    }
+
+    .btn-brown {
+      background-color: #a67c52;
+      border: none;
+      color: #fff;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-brown:hover {
+      background-color: #8b5e3c;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .hero-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeUp 1.2s ease-in;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-section h1:hover {
+      transform: scale(1.03);
+      color: #e5d5c5;
+    }
+
+    .hero-section p {
+      font-size: 1.2rem;
+      margin: 15px 0;
+      color: #d2b48c;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .footer {
+      background-color: rgba(26, 26, 26, 0.92);
+      color: #a67c52;
+      text-align: center;
+      padding: 10px 0;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .link-text {
+        display: inline-block;
+        margin-top: 20px;
+        color: #ffcc99;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid transparent;
+    }
+
+    .link-text:hover {
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        transform: scale(1.05);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">PennyTrack</a>
+      <div>
+        <a href="{{ url_for('login') }}" class="btn btn-outline-light me-2">Login</a>
+        <a href="{{ url_for('register') }}" class="btn btn-brown">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1>Simplify Your Spending</h1>
+      <p>Track where your money goes with PennyTrack – a minimalist expense tracker built for clarity and control.</p>
+      <a href="{{ url_for('login') }}" class="btn btn-brown btn-lg mt-3">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto">
+    <div class="container">
+      <small>&copy; 2025 PennyTrack. Built with 🖤 and coffee by Sujal.</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
