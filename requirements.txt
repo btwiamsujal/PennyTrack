@@ -4,3 +4,4 @@ flask-wtf
 pymongo
 dnspython
 wtforms
+gunicorn==21.2.0
