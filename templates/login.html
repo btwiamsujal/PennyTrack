@@ -1,16 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Login – PennyTrack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: url("{{ url_for('static', filename='images/dollar-bg.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: brightness(0.2);
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        body.fade-in {
+            opacity: 1;
+        }
+
+        .login-container {
+            background: rgba(26, 26, 26, 0.92);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(166, 124, 82, 0.3);
+            max-width: 420px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            text-align: center;
+            color: #d2b48c;
+            margin-bottom: 25px;
+        }
+
+        label {
+            color: #d2b48c;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        .form-control {
+            background: #2a2a2a;
+            color: #fff;
+            border: 1px solid #a67c52;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            transition: 0.3s ease;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 8px #a67c52;
+            border-color: #a67c52;
+        }
+
+        .form-control:hover {
+            box-shadow: 0 0 5px #a67c52;
+        }
+
+        input[type="submit"], .btn-brown {
+            background-color: #a67c52;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover, .btn-brown:hover {
+            background-color: #8b5e3c;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #a67c52;
+        }
+
+        .register-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #d2b48c;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+            color: #f5f5f5;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.email.label }} {{ form.email() }} <br>
-        {{ form.password.label }} {{ form.password() }} <br>
-        {{ form.submit() }}
-    </form>
-    <a href="{{ url_for('register') }}">Don't have an account? Sign Up</a>
+    <div class="login-container">
+        <h2>Login to PennyTrack</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                {{ form.email.label }}
+                {{ form.email(class_="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ form.password.label }}
+                {{ form.password(class_="form-control") }}
+            </div>
+            <div class="d-grid">
+                {{ form.submit(class_="btn btn-brown") }}
+            </div>
+        </form>
+        <a href="#" class="register-link" onclick="redirectWithFade('{{ url_for('register') }}')">Don't have an account? Sign Up</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("fade-in");
+        });
+
+        function redirectWithFade(url) {
+            document.body.classList.remove("fade-in");
+            document.body.style.opacity = 0;
+            setTimeout(() => window.location.href = url, 600);
+        }
+    </script>
 </body>
 </html>

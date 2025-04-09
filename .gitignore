@@ -1,3 +1,40 @@
-__pycache__
-instance
-venv
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+venv/
+ENV/
+env/
+.venv/
+
+# VS Code config
+.vscode/
+
+# macOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# Flask specific
+instance/
+*.db
+*.sqlite3
+
+# Log files
+*.log
+
+# Compiled files
+*.so
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Render build/output (if any)
+build/
+dist/

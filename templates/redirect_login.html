@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            background: url("{{ url_for('static', filename='images/dollar-bg.jpg') }}") center/cover no-repeat fixed;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding-top: 20%;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        h2 {
+            color: #d2b48c;
+        }
+    </style>
+</head>
+<body>
+    <h2>Account created successfully!</h2>
+    <p>Redirecting you to login...</p>
+
+    <script>
+        setTimeout(function () {
+            document.body.style.opacity = 0;
+            setTimeout(() => {
+                window.location.href = "{{ url_for('login') }}";
+            }, 1000);
+        }, 1500);  // show message briefly before fading out
+    </script>
+</body>
+</html>

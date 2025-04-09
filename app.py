@@ -5,6 +5,8 @@ from datetime import datetime
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from bson.errors import InvalidId
+from flask_login import login_required
+
 
 from forms import RegisterForm, LoginForm
 
