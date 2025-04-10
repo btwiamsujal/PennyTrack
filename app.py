@@ -48,29 +48,32 @@ def home():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        # Check if email or username already exists
-        existing_user = users_collection.find_one({
-            '$or': [
-                {'email': form.email.data},
-                {'username': form.username.data}
-            ]
-        })
+        try:
+            existing_user = users_collection.find_one({
+                '$or': [
+                    {'email': form.email.data},
+                    {'username': form.username.data}
+                ]
+            })
 
-        if existing_user:
-            flash('Username or email already exists.', 'danger')
-            return redirect(url_for('register'))
+            if existing_user:
+                flash('Username or email already exists.', 'danger')
+                return redirect(url_for('register'))
 
-        hashed_pw = generate_password_hash(form.password.data)
-        user_id = users_collection.insert_one({
-            'username': form.username.data,
-            'email': form.email.data,
-            'password': hashed_pw
-        }).inserted_id
+            hashed_pw = generate_password_hash(form.password.data)
+            user_id = users_collection.insert_one({
+                'username': form.username.data,
+                'email': form.email.data,
+                'password': hashed_pw
+            }).inserted_id
 
-        flash("Account created! Please login.", "success")
-        return redirect(url_for('login'))
+            flash("Account created! Please login.", "success")
+            return redirect(url_for('login'))
+        except Exception as e:
+            return f"Error: {e}"  # Temporarily shows the error on the page
 
     return render_template("register.html", form=form)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
