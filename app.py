@@ -18,10 +18,12 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 # MongoDB connection
-client = MongoClient(os.getenv('MONGO_URI'))
-db = client.pennytrack
+client = MongoClient("mongodb+srv://admin:MongoDB4u@pennytrackcluster.xymx51b.mongodb.net/PennyTrack?retryWrites=true&w=majority&appName=PennyTrackCluster")
+db = client.PennyTrack
 users_collection = db.users
 expenses_collection = db.expenses
+
+
 
 # -------------------- Login Manager --------------------
 login_manager = LoginManager(app)
