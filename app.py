@@ -7,13 +7,18 @@ from pymongo import MongoClient
 from bson.errors import InvalidId
 from flask_login import login_required
 from forms import RegistrationForm, LoginForm
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Load from .env file
 
 # -------------------- App Config --------------------
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
 
 # MongoDB connection
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient(os.getenv('MONGO_URI'))
 db = client.pennytrack
 users_collection = db.users
 expenses_collection = db.expenses
