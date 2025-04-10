@@ -38,3 +38,5 @@ desktop.ini
 # Render build/output (if any)
 build/
 dist/
+
+file.py
