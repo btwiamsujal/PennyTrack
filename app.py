@@ -6,9 +6,7 @@ from bson.objectid import ObjectId
 from pymongo import MongoClient
 from bson.errors import InvalidId
 from flask_login import login_required
-
-
-from forms import RegisterForm, LoginForm
+from forms import RegistrationForm, LoginForm
 
 # -------------------- App Config --------------------
 app = Flask(__name__)
@@ -48,7 +46,7 @@ def home():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegisterForm()
+    form = RegistrationForm()
     if form.validate_on_submit():
         # Check if email or username already exists
         existing_user = users_collection.find_one({
