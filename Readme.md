@@ -2,12 +2,14 @@
 
 PennyTrack is a minimal yet powerful web application designed to help you manage and visualize your daily expenses. Whether you're tracking bills, food, travel, or other costs, PennyTrack makes it effortless with a simple UI and powerful backend.
 
+🔗 **Live App**: [https://pennytrack-production.up.railway.app/](https://pennytrack-production.up.railway.app/)
+
 ---
 
 ## 🚀 Features
 
 - 🧾 Add, view, and categorize expenses
-- 📅 Date-based tracking
+- 🗕️ Date-based tracking
 - 📊 Expense history and insights
 - 🔐 User authentication (login/register)
 - 🎨 Clean & responsive UI (Bootstrap-powered)
@@ -20,27 +22,7 @@ PennyTrack is a minimal yet powerful web application designed to help you manage
 - **Frontend**: HTML, CSS, Bootstrap, Jinja2
 - **Backend**: Python (Flask)
 - **Database**: MongoDB
-- **Deployment**: Render (Free Hosting Platform)
-
----
-
-## 📂 Folder Structure
-
-```
-PennyTrack/
-├── static/
-│   └── styles.css
-│   └── images/
-├── templates/
-│   └── base.html
-│   └── dashboard.html
-│   └── login.html
-│   └── register.html
-├── app.py
-├── forms.py
-├── requirements.txt
-└── README.md
-```
+- **Deployment**: Render / Railway
 
 ---
 
@@ -82,13 +64,21 @@ PennyTrack/
 
 ---
 
+## 📦 Versions
+
+### 🧾 PennyTrack v1
+
+- Core functionality to **add, view, and categorize expenses with login/register system**.
+
+---
+
 ## ✨ Contributing
 
 Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ---
 
-## 📃 License
+## 📓 License
 
 This project is licensed under the [MIT License](LICENSE).
 
