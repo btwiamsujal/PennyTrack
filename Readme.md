@@ -31,7 +31,7 @@ PennyTrack is a minimal yet powerful web application designed to help you manage
 1. **Clone the repo:**
 
    ```bash
-   git clone https://github.com/yourusername/PennyTrack.git
+   git clone https://github.com/btmiamsujal/PennyTrack.git
    cd PennyTrack
    ```
 
